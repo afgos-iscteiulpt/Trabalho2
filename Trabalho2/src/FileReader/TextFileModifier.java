@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class TextFileReader {
+public class TextFileModifier {
 	
 	public static void readFile(File file) {
 		DataProcessor processor = new DataProcessor();
