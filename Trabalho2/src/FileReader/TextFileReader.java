@@ -8,11 +8,13 @@ import java.io.IOException;
 public class TextFileReader {
 	
 	public static void readFile(File file) {
+		DataProcessor processor = new DataProcessor();
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 		    String line;
 		    while ((line = br.readLine()) != null) {
-		       System.out.println(line);
+		       processor.processQuestion(line);
 		    }
+		    processor.countAllObjects();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
