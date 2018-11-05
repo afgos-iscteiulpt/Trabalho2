@@ -56,6 +56,7 @@ public class DataProcessor {
 	
 	public void processWord(String tag, String word) {
 		Integer tableValue;
+		word = checkLastCharacter(word);
 		switch (tag) {
 		case "actor_name":
 			actor_name_unigram.add(word);
@@ -187,6 +188,17 @@ public class DataProcessor {
 			break;
 		}
 		lastRead = word;
+	}
+	
+	/**
+	 * Receives a String
+	 * Checks if the last charater is an interrogation point and deletes it if it is
+	 */
+	public String checkLastCharacter(String word) {
+		if(word.charAt(word.length()-1) == '?') {
+			return word.substring(0, word.length()-1);
+		}
+		return word;
 	}
 	
 
