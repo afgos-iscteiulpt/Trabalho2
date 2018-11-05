@@ -63,7 +63,7 @@ public class DataProcessor {
 			if (tableValue == null)
 				actor_name_bigram.put(lastRead, word, 1);
 			else
-				actor_name_bigram.put(lastRead, word, tableValue);
+				actor_name_bigram.put(lastRead, word, tableValue+1);
 			break;
 		case "budget":
 			budget_unigram.add(word);
