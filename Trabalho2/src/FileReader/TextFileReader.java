@@ -14,7 +14,6 @@ public class TextFileReader {
 		    while ((line = br.readLine()) != null) {
 		       processor.processQuestion(line);
 		    }
-		    processor.countAllObjects();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
