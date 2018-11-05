@@ -122,4 +122,136 @@ public class DataProcessor {
 		}
 	}
 
+	public String getLastRead() {
+		return lastRead;
+	}
+
+	public Multiset<String> getActor_name_unigram() {
+		return actor_name_unigram;
+	}
+
+	public Multiset<String> getBudget_unigram() {
+		return budget_unigram;
+	}
+
+	public Multiset<String> getCharacter_name_unigram() {
+		return character_name_unigram;
+	}
+
+	public Multiset<String> getGenre_unigram() {
+		return genre_unigram;
+	}
+
+	public Multiset<String> getKeyword_unigram() {
+		return keyword_unigram;
+	}
+
+	public Multiset<String> getOriginal_language_unigram() {
+		return original_language_unigram;
+	}
+
+	public Multiset<String> getOriginal_title_unigram() {
+		return original_title_unigram;
+	}
+
+	public Multiset<String> getOverview_unigram() {
+		return overview_unigram;
+	}
+
+	public Multiset<String> getPerson_name_unigram() {
+		return person_name_unigram;
+	}
+
+	public Multiset<String> getProduction_company_unigram() {
+		return production_company_unigram;
+	}
+
+	public Multiset<String> getProduction_country_unigram() {
+		return production_country_unigram;
+	}
+
+	public Multiset<String> getRelease_date_unigram() {
+		return release_date_unigram;
+	}
+
+	public Multiset<String> getRevenue_unigram() {
+		return revenue_unigram;
+	}
+
+	public Multiset<String> getRuntime_unigram() {
+		return runtime_unigram;
+	}
+
+	public Multiset<String> getSpoken_language_unigram() {
+		return spoken_language_unigram;
+	}
+
+	public Multiset<String> getVote_avg_unigram() {
+		return vote_avg_unigram;
+	}
+
+	public Table<String, String, Integer> getActor_name_bigram() {
+		return actor_name_bigram;
+	}
+
+	public Table<String, String, Integer> getBudget_bigram() {
+		return budget_bigram;
+	}
+
+	public Table<String, String, Integer> getCharacter_name_bigram() {
+		return character_name_bigram;
+	}
+
+	public Table<String, String, Integer> getGenre_bigram() {
+		return genre_bigram;
+	}
+
+	public Table<String, String, Integer> getKeyword_bigram() {
+		return keyword_bigram;
+	}
+
+	public Table<String, String, Integer> getOriginal_language_bigram() {
+		return original_language_bigram;
+	}
+
+	public Table<String, String, Integer> getOriginal_title_bigram() {
+		return original_title_bigram;
+	}
+
+	public Table<String, String, Integer> getOverview_bigram() {
+		return overview_bigram;
+	}
+
+	public Table<String, String, Integer> getPerson_name_bigram() {
+		return person_name_bigram;
+	}
+
+	public Table<String, String, Integer> getProduction_company_bigram() {
+		return production_company_bigram;
+	}
+
+	public Table<String, String, Integer> getProduction_country_bigram() {
+		return production_country_bigram;
+	}
+
+	public Table<String, String, Integer> getRelease_date_bigram() {
+		return release_date_bigram;
+	}
+
+	public Table<String, String, Integer> getRevenue_bigram() {
+		return revenue_bigram;
+	}
+
+	public Table<String, String, Integer> getRuntime_bigram() {
+		return runtime_bigram;
+	}
+
+	public Table<String, String, Integer> getSpoken_language_bigram() {
+		return spoken_language_bigram;
+	}
+
+	public Table<String, String, Integer> getVote_avg_bigram() {
+		return vote_avg_bigram;
+	}
+
 }

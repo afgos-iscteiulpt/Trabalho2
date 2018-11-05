@@ -1,3 +1,3 @@
-FileReader\TextFileReader.class
-Main\main.class
 FileReader\DataProcessor.class
+FileReader\TextFileModifier.class
+Main\Main.class
