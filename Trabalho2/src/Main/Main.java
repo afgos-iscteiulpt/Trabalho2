@@ -28,6 +28,21 @@ public class Main {
 		TextFileModifier.writeUnigramFile("unigrams/unigrams_spoken_language.txt", processor.getSpoken_language_unigram());
 		TextFileModifier.writeUnigramFile("unigrams/unigrams_vote_avg.txt", processor.getVote_avg_unigram());
 		TextFileModifier.writeBigramFile("bigrams/bigrams_.txt", processor.getActor_name_bigram());
+		TextFileModifier.writeBigramFile("bigrams/bigrams_actor_name.txt", processor.getActor_name_bigram());
+		TextFileModifier.writeBigramFile("bigrams/bigrams_budget.txt", processor.getBudget_bigram());
+		TextFileModifier.writeBigramFile("bigrams/bigrams_character_name.txt", processor.getCharacter_name_bigram());
+		TextFileModifier.writeBigramFile("bigrams/bigrams_genre.txt", processor.getGenre_bigram());
+		TextFileModifier.writeBigramFile("bigrams/bigrams_keyword.txt", processor.getKeyword_bigram());
+		TextFileModifier.writeBigramFile("bigrams/bigrams_original_language.txt", processor.getOriginal_language_bigram());
+		TextFileModifier.writeBigramFile("bigrams/bigrams_original_title.txt", processor.getOriginal_title_bigram());
+		TextFileModifier.writeBigramFile("bigrams/bigrams_overview.txt", processor.getOverview_bigram());
+		TextFileModifier.writeBigramFile("bigrams/bigrams_person_name.txt", processor.getPerson_name_bigram());
+		TextFileModifier.writeBigramFile("bigrams/bigrams_production_company.txt", processor.getProduction_company_bigram());
+		TextFileModifier.writeBigramFile("bigrams/bigrams_production_country.txt", processor.getProduction_country_bigram());
+		TextFileModifier.writeBigramFile("bigrams/bigrams_release_date.txt", processor.getRelease_date_bigram());
+		TextFileModifier.writeBigramFile("bigrams/bigrams_revenue_bigram.txt", processor.getRevenue_bigram());
+		TextFileModifier.writeBigramFile("bigrams/bigrams_spoken_language.txt", processor.getSpoken_language_bigram());
+		TextFileModifier.writeBigramFile("bigrams/bigrams_vote_avg.txt", processor.getVote_avg_bigram());
 	}
 
 }
