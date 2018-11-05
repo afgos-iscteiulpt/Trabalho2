@@ -67,48 +67,123 @@ public class DataProcessor {
 			break;
 		case "budget":
 			budget_unigram.add(word);
+			tableValue = budget_bigram.get(lastRead, word);
+			if (tableValue == null)
+				budget_bigram.put(lastRead, word, 1);
+			else
+				budget_bigram.put(lastRead, word, tableValue+1);
 			break;
 		case "character_name":
 			character_name_unigram.add(word);
+			tableValue = character_name_bigram.get(lastRead, word);
+			if (tableValue == null)
+				character_name_bigram.put(lastRead, word, 1);
+			else
+				character_name_bigram.put(lastRead, word, tableValue+1);
 			break;
 		case "genre":
 			genre_unigram.add(word);
+			tableValue = genre_bigram.get(lastRead, word);
+			if (tableValue == null)
+				genre_bigram.put(lastRead, word, 1);
+			else
+				genre_bigram.put(lastRead, word, tableValue+1);
 			break;
 		case "keyword":
 			keyword_unigram.add(word);
+			tableValue = keyword_bigram.get(lastRead, word);
+			if (tableValue == null)
+				keyword_bigram.put(lastRead, word, 1);
+			else
+				keyword_bigram.put(lastRead, word, tableValue+1);
 			break;
 		case "original_language":
 			original_language_unigram.add(word);
+			tableValue = original_language_bigram.get(lastRead, word);
+			if (tableValue == null)
+				original_language_bigram.put(lastRead, word, 1);
+			else
+				original_language_bigram.put(lastRead, word, tableValue+1);
 			break;
 		case "original_title":
 			original_title_unigram.add(word);
+			tableValue = original_title_bigram.get(lastRead, word);
+			if (tableValue == null)
+				original_title_bigram.put(lastRead, word, 1);
+			else
+				original_title_bigram.put(lastRead, word, tableValue+1);
 			break;
 		case "overview":
 			overview_unigram.add(word);
+			tableValue = overview_bigram.get(lastRead, word);
+			if (tableValue == null)
+				overview_bigram.put(lastRead, word, 1);
+			else
+				overview_bigram.put(lastRead, word, tableValue+1);
 			break;
 		case "person_name":
 			person_name_unigram.add(word);
+			tableValue = person_name_bigram.get(lastRead, word);
+			if (tableValue == null)
+				person_name_bigram.put(lastRead, word, 1);
+			else
+				person_name_bigram.put(lastRead, word, tableValue+1);
 			break;
 		case "production_company":
 			production_company_unigram.add(word);
+			tableValue = production_company_bigram.get(lastRead, word);
+			if (tableValue == null)
+				production_company_bigram.put(lastRead, word, 1);
+			else
+				production_company_bigram.put(lastRead, word, tableValue+1);
 			break;
 		case "production_country":
 			production_country_unigram.add(word);
+			tableValue = production_country_bigram.get(lastRead, word);
+			if (tableValue == null)
+				production_country_bigram.put(lastRead, word, 1);
+			else
+				production_country_bigram.put(lastRead, word, tableValue+1);
 			break;
 		case "release_date":
 			release_date_unigram.add(word);
+			tableValue = release_date_bigram.get(lastRead, word);
+			if (tableValue == null)
+				release_date_bigram.put(lastRead, word, 1);
+			else
+				release_date_bigram.put(lastRead, word, tableValue+1);
 			break;
 		case "revenue":
 			revenue_unigram.add(word);
+			tableValue = revenue_bigram.get(lastRead, word);
+			if (tableValue == null)
+				revenue_bigram.put(lastRead, word, 1);
+			else
+				revenue_bigram.put(lastRead, word, tableValue+1);
 			break;
 		case "runtime":
 			runtime_unigram.add(word);
+			tableValue = runtime_bigram.get(lastRead, word);
+			if (tableValue == null)
+				runtime_bigram.put(lastRead, word, 1);
+			else
+				runtime_bigram.put(lastRead, word, tableValue+1);
 			break;
 		case "spoken_language":
 			spoken_language_unigram.add(word);
+			tableValue = spoken_language_bigram.get(lastRead, word);
+			if (tableValue == null)
+				spoken_language_bigram.put(lastRead, word, 1);
+			else
+				spoken_language_bigram.put(lastRead, word, tableValue+1);
 			break;
 		case "vote_avg":
 			vote_avg_unigram.add(word);
+			tableValue = vote_avg_bigram.get(lastRead, word);
+			if (tableValue == null)
+				vote_avg_bigram.put(lastRead, word, 1);
+			else
+				vote_avg_bigram.put(lastRead, word, tableValue+1);
 			break;
 		}
 		lastRead = word;
