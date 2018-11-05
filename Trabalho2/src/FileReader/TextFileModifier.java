@@ -47,6 +47,19 @@ public class TextFileModifier {
 	}
 	
 	public static void writeBigramFile(String fileName, Table<String, String, Integer> bigram) {
-		
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+			for(String row : bigram.rowKeySet()) 
+				for(String column : bigram.columnKeySet())
+					if (bigram.get(row, column) != null)
+					writer.write(row + " " + column + " " + bigram.get(row, column) + "\n");
+			writer.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
