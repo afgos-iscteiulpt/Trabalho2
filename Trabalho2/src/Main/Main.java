@@ -12,9 +12,11 @@ public class Main {
 		new File("unigrams").mkdirs();
 		new File("bigrams").mkdirs();
 		DataProcessor processor = new DataProcessor();
-		ReadFileQuestoes replaceprocessor = new ReadFileQuestoes();
+		ReadFileQuestoes subprocessor = new ReadFileQuestoes();
 		
 		//Substituir palavras nos ficheiros das questoes
+		
+		subprocessor.ReadQuestion(new File("corpora/QuestoesConhecidas.txt"),new File("corpora/QuestoesConhecidasTest.txt"));
 		
 		//ReadFileQuestoes.ReadQuestion(new File("corpora/QuestoesConhecidas.txt"));
 		
