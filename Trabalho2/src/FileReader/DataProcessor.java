@@ -48,12 +48,13 @@ public class DataProcessor {
 	public void processQuestion(String s) {
 		String[] tabSplit = s.trim().split("\\t");
 		String[] stringArray = tabSplit[1].split("\\s");
+		processWord(tabSplit[0].trim(), "<s>");
 		for (String word : stringArray) {
 			processWord(tabSplit[0].trim(), word);
 		}
 		lastRead = "<s>";
 	}
-	
+
 	public void processWord(String tag, String word) {
 		Integer tableValue;
 		word = checkLastCharacter(word);
@@ -194,7 +195,7 @@ public class DataProcessor {
 	 * Receives a String
 	 * Checks if the last charater is an interrogation point and deletes it if it is
 	 */
-	public String checkLastCharacter(String word) {
+	public static String checkLastCharacter(String word) {
 		if(word.charAt(word.length()-1) == '?') {
 			return word.substring(0, word.length()-1);
 		}

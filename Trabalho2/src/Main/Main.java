@@ -28,10 +28,10 @@ public class Main {
 		TextFileModifier.writeUnigramFile("unigrams/unigrams_release_date.txt", processor.getRelease_date_unigram());
 		TextFileModifier.writeUnigramFile("unigrams/unigrams_revenue_unigram.txt", processor.getRevenue_unigram());
 		TextFileModifier.writeUnigramFile("unigrams/unigrams_spoken_language.txt", processor.getSpoken_language_unigram());
+		TextFileModifier.writeUnigramFile("unigrams/unigrams_runtime.txt", processor.getRuntime_unigram());
 		TextFileModifier.writeUnigramFile("unigrams/unigrams_vote_avg.txt", processor.getVote_avg_unigram());
 		
 		//bigrams
-		TextFileModifier.writeBigramFile("bigrams/bigrams_.txt", processor.getActor_name_bigram());
 		TextFileModifier.writeBigramFile("bigrams/bigrams_actor_name.txt", processor.getActor_name_bigram());
 		TextFileModifier.writeBigramFile("bigrams/bigrams_budget.txt", processor.getBudget_bigram());
 		TextFileModifier.writeBigramFile("bigrams/bigrams_character_name.txt", processor.getCharacter_name_bigram());
@@ -46,6 +46,7 @@ public class Main {
 		TextFileModifier.writeBigramFile("bigrams/bigrams_release_date.txt", processor.getRelease_date_bigram());
 		TextFileModifier.writeBigramFile("bigrams/bigrams_revenue_bigram.txt", processor.getRevenue_bigram());
 		TextFileModifier.writeBigramFile("bigrams/bigrams_spoken_language.txt", processor.getSpoken_language_bigram());
+		TextFileModifier.writeBigramFile("bigrams/bigrams_runtime.txt", processor.getRuntime_bigram());
 		TextFileModifier.writeBigramFile("bigrams/bigrams_vote_avg.txt", processor.getVote_avg_bigram());
 		
 		//smooth unigrams
@@ -61,12 +62,12 @@ public class Main {
 		TextFileModifier.writeUnigramSmoothFile("unigrams/unigrams_production_company_smooth.txt", processor.getProduction_company_unigram());
 		TextFileModifier.writeUnigramSmoothFile("unigrams/unigrams_production_country_smooth.txt", processor.getProduction_country_unigram());
 		TextFileModifier.writeUnigramSmoothFile("unigrams/unigrams_release_date_smooth.txt", processor.getRelease_date_unigram());
-		TextFileModifier.writeUnigramSmoothFile("unigrams/unigrams_revenue_unigram_smooth.txt", processor.getRevenue_unigram());
+		TextFileModifier.writeUnigramSmoothFile("unigrams/unigrams_revenue_smooth.txt", processor.getRevenue_unigram());
 		TextFileModifier.writeUnigramSmoothFile("unigrams/unigrams_spoken_language_smooth.txt", processor.getSpoken_language_unigram());
+		TextFileModifier.writeUnigramSmoothFile("unigrams/unigrams_runtime_smooth.txt", processor.getRuntime_unigram());
 		TextFileModifier.writeUnigramSmoothFile("unigrams/unigrams_vote_avg_smooth.txt", processor.getVote_avg_unigram());
 	
 		//smooth bigrams
-		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams__smooth.txt", processor.getActor_name_bigram());
 		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_actor_name_smooth.txt", processor.getActor_name_bigram());
 		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_budget_smooth.txt", processor.getBudget_bigram());
 		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_character_name_smooth.txt", processor.getCharacter_name_bigram());
@@ -79,8 +80,9 @@ public class Main {
 		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_production_company_smooth.txt", processor.getProduction_company_bigram());
 		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_production_country_smooth.txt", processor.getProduction_country_bigram());
 		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_release_date_smooth.txt", processor.getRelease_date_bigram());
-		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_revenue_bigram_smooth.txt", processor.getRevenue_bigram());
+		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_revenue_smooth.txt", processor.getRevenue_bigram());
 		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_spoken_language_smooth.txt", processor.getSpoken_language_bigram());
+		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_runtime_smooth.txt", processor.getRuntime_bigram());
 		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_vote_avg_smooth.txt", processor.getVote_avg_bigram());
 	}
 
