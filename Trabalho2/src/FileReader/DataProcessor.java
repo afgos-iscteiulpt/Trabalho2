@@ -54,6 +54,7 @@ public class DataProcessor {
 		lastRead = "<s>";
 	}
 	
+	
 	public void processWord(String tag, String word) {
 		Integer tableValue;
 		word = checkLastCharacter(word);
