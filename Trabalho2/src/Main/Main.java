@@ -4,6 +4,7 @@ import java.io.File;
 
 import FileReader.DataProcessor;
 import FileReader.TextFileModifier;
+import FileReader2.ReadFileQuestoes;
 
 public class Main {
 
@@ -11,7 +12,15 @@ public class Main {
 		new File("unigrams").mkdirs();
 		new File("bigrams").mkdirs();
 		DataProcessor processor = new DataProcessor();
+		ReadFileQuestoes subprocessor = new ReadFileQuestoes();
 		
+		//Substituir palavras nos ficheiros das questoes
+		
+		subprocessor.ReadQuestion(new File("corpora/QuestoesConhecidas.txt"),new File("corpora/QuestoesConhecidasTest.txt"));
+		
+		//ReadFileQuestoes.ReadQuestion(new File("corpora/QuestoesConhecidas.txt"));
+		
+	
 		//Unigrams
 		TextFileModifier.readFile(new File("corpora/QuestoesConhecidas.txt"), processor);
 		TextFileModifier.writeUnigramFile("unigrams/unigrams_actor_name.txt", processor.getActor_name_unigram());
@@ -84,6 +93,7 @@ public class Main {
 		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_spoken_language_smooth.txt", processor.getSpoken_language_bigram());
 		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_runtime_smooth.txt", processor.getRuntime_bigram());
 		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_vote_avg_smooth.txt", processor.getVote_avg_bigram());
+	
 	}
 
 }
