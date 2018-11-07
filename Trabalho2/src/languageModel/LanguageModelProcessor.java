@@ -1,20 +1,28 @@
 package languageModel;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+
+import com.google.common.collect.HashMultiset;
+import com.google.common.collect.Multiset;
 
 import FileReader.DataProcessor;
+import resources.Tags;
 
 public class LanguageModelProcessor {
 
 	Map<String, String> filesDirectories = new HashMap<>();
 
 	public LanguageModelProcessor(File filesPair) {
+
 		try (BufferedReader br = new BufferedReader(new FileReader(filesPair))) {
 			String line;
 			while ((line = br.readLine()) != null) {
@@ -30,22 +38,31 @@ public class LanguageModelProcessor {
 	}
 
 	public void processNewQuestion(String s) {
-		double probability = 1;
-		String lastWord = "<s>";
+		double probability;
+		double higherProbability = 0;
+		String tag = Tags.actor_name.toString();
 		String[] stringArray = s.split("\\s");
-		for (String word : stringArray) {
-			probability = probability * conditionalProbabilities(word, lastWord);
-			System.out.println(probability);
-			lastWord = word;
+		for (Tags t : Tags.values()) {
+			probability=1;
+			String lastWord = "<s>";
+			for (String word : stringArray) {
+				probability = probability * conditionalProbabilities(t.toString(), word, lastWord);
+				lastWord = word;
+			}
+			if (probability> higherProbability) {
+				higherProbability = probability;
+				tag = t.toString();
+			}
 		}
+		System.out.println(tag);
 	}
 
-	private double conditionalProbabilities(String word, String lastWord) {
+	private double conditionalProbabilities(String tag, String word, String lastWord) {
 		double lastWordFreq = 0;
 		double wordAfterLastWordFreq = 0;
-		double result= 0;
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("unigrams/" + filesDirectories.get("actor_name").split("\\s")[0]));
+			BufferedReader br = new BufferedReader(
+					new FileReader("unigrams/" + filesDirectories.get(tag).split("\\s")[0]));
 			String line;
 			while ((line = br.readLine()) != null) {
 				if (line.startsWith(lastWord)) {
@@ -54,7 +71,7 @@ public class LanguageModelProcessor {
 				}
 			}
 			br.close();
-			br = new BufferedReader(new FileReader("bigrams/" + filesDirectories.get("actor_name").split("\\s")[1]));
+			br = new BufferedReader(new FileReader("bigrams/" + filesDirectories.get(tag).split("\\s")[1]));
 			while ((line = br.readLine()) != null) {
 				String[] stringArray = line.split("\\s");
 				if (stringArray[0].equals(lastWord) && stringArray[1].equals(word)) {
@@ -63,325 +80,6 @@ public class LanguageModelProcessor {
 				}
 			}
 			br.close();
-			result = wordAfterLastWordFreq / lastWordFreq;
-			//======================budget=============/
-			br = new BufferedReader(new FileReader("unigrams/" + filesDirectories.get("budget").split("\\s")[0]));
-			while ((line = br.readLine()) != null) {
-				if (line.startsWith(lastWord)) {
-					lastWordFreq = Integer.valueOf(line.split("\\s")[1]);
-					break;
-				}
-			}
-			br.close();
-			br = new BufferedReader(new FileReader("bigrams/" + filesDirectories.get("budget").split("\\s")[1]));
-			while ((line = br.readLine()) != null) {
-				String[] stringArray = line.split("\\s");
-				if (stringArray[0].equals(lastWord) && stringArray[1].equals(word)) {
-					wordAfterLastWordFreq = Integer.valueOf(line.split("\\s")[2]);
-					break;
-				}
-			}
-			br.close();
-			if(result < (wordAfterLastWordFreq / lastWordFreq))
-				result = wordAfterLastWordFreq / lastWordFreq;
-			
-			//======================character name=============/
-			br = new BufferedReader(new FileReader("unigrams/" + filesDirectories.get("character_name").split("\\s")[0]));
-			while ((line = br.readLine()) != null) {
-				if (line.startsWith(lastWord)) {
-					lastWordFreq = Integer.valueOf(line.split("\\s")[1]);
-					break;
-				}
-			}
-			br.close();
-			br = new BufferedReader(new FileReader("bigrams/" + filesDirectories.get("character_name").split("\\s")[1]));
-			while ((line = br.readLine()) != null) {
-				String[] stringArray = line.split("\\s");
-				if (stringArray[0].equals(lastWord) && stringArray[1].equals(word)) {
-					wordAfterLastWordFreq = Integer.valueOf(line.split("\\s")[2]);
-					break;
-				}
-			}
-			br.close();
-			if(result < (wordAfterLastWordFreq / lastWordFreq))
-				result = wordAfterLastWordFreq / lastWordFreq;
-			
-			//======================genre=============/
-			br = new BufferedReader(new FileReader("unigrams/" + filesDirectories.get("budget").split("\\s")[0]));
-			while ((line = br.readLine()) != null) {
-				if (line.startsWith(lastWord)) {
-					lastWordFreq = Integer.valueOf(line.split("\\s")[1]);
-					break;
-				}
-			}
-			br.close();
-			br = new BufferedReader(new FileReader("bigrams/" + filesDirectories.get("budget").split("\\s")[1]));
-			while ((line = br.readLine()) != null) {
-				String[] stringArray = line.split("\\s");
-				if (stringArray[0].equals(lastWord) && stringArray[1].equals(word)) {
-					wordAfterLastWordFreq = Integer.valueOf(line.split("\\s")[2]);
-					break;
-				}
-			}
-			br.close();
-			if(result < (wordAfterLastWordFreq / lastWordFreq))
-				result = wordAfterLastWordFreq / lastWordFreq;
-			
-			//======================keyword=============/
-			br = new BufferedReader(new FileReader("unigrams/" + filesDirectories.get("keyword").split("\\s")[0]));
-			while ((line = br.readLine()) != null) {
-				if (line.startsWith(lastWord)) {
-					lastWordFreq = Integer.valueOf(line.split("\\s")[1]);
-					break;
-				}
-			}
-			br.close();
-			br = new BufferedReader(new FileReader("bigrams/" + filesDirectories.get("keyword").split("\\s")[1]));
-			while ((line = br.readLine()) != null) {
-				String[] stringArray = line.split("\\s");
-				if (stringArray[0].equals(lastWord) && stringArray[1].equals(word)) {
-					wordAfterLastWordFreq = Integer.valueOf(line.split("\\s")[2]);
-					break;
-				}
-			}
-			br.close();
-			if(result < (wordAfterLastWordFreq / lastWordFreq))
-				result = wordAfterLastWordFreq / lastWordFreq;
-			
-			//======================original language=============/
-			br = new BufferedReader(new FileReader("unigrams/" + filesDirectories.get("original_language").split("\\s")[0]));
-			while ((line = br.readLine()) != null) {
-				if (line.startsWith(lastWord)) {
-					lastWordFreq = Integer.valueOf(line.split("\\s")[1]);
-					break;
-				}
-			}
-			br.close();
-			br = new BufferedReader(new FileReader("bigrams/" + filesDirectories.get("original_language").split("\\s")[1]));
-			while ((line = br.readLine()) != null) {
-				String[] stringArray = line.split("\\s");
-				if (stringArray[0].equals(lastWord) && stringArray[1].equals(word)) {
-					wordAfterLastWordFreq = Integer.valueOf(line.split("\\s")[2]);
-					break;
-				}
-			}
-			br.close();
-			if(result < (wordAfterLastWordFreq / lastWordFreq))
-				result = wordAfterLastWordFreq / lastWordFreq;
-			
-			//======================original_title=============/
-			br = new BufferedReader(new FileReader("unigrams/" + filesDirectories.get("original_title").split("\\s")[0]));
-			while ((line = br.readLine()) != null) {
-				if (line.startsWith(lastWord)) {
-					lastWordFreq = Integer.valueOf(line.split("\\s")[1]);
-					break;
-				}
-			}
-			br.close();
-			br = new BufferedReader(new FileReader("bigrams/" + filesDirectories.get("original_title").split("\\s")[1]));
-			while ((line = br.readLine()) != null) {
-				String[] stringArray = line.split("\\s");
-				if (stringArray[0].equals(lastWord) && stringArray[1].equals(word)) {
-					wordAfterLastWordFreq = Integer.valueOf(line.split("\\s")[2]);
-					break;
-				}
-			}
-			br.close();
-			if(result < (wordAfterLastWordFreq / lastWordFreq))
-				result = wordAfterLastWordFreq / lastWordFreq;
-			
-			//======================overview=============/
-			br = new BufferedReader(new FileReader("unigrams/" + filesDirectories.get("overview").split("\\s")[0]));
-			while ((line = br.readLine()) != null) {
-				if (line.startsWith(lastWord)) {
-					lastWordFreq = Integer.valueOf(line.split("\\s")[1]);
-					break;
-				}
-			}
-			br.close();
-			br = new BufferedReader(new FileReader("bigrams/" + filesDirectories.get("overview").split("\\s")[1]));
-			while ((line = br.readLine()) != null) {
-				String[] stringArray = line.split("\\s");
-				if (stringArray[0].equals(lastWord) && stringArray[1].equals(word)) {
-					wordAfterLastWordFreq = Integer.valueOf(line.split("\\s")[2]);
-					break;
-				}
-			}
-			br.close();
-			if(result < (wordAfterLastWordFreq / lastWordFreq))
-				result = wordAfterLastWordFreq / lastWordFreq;
-			
-			//=====================person_name=============/
-			br = new BufferedReader(new FileReader("unigrams/" + filesDirectories.get("person_name").split("\\s")[0]));
-			while ((line = br.readLine()) != null) {
-				if (line.startsWith(lastWord)) {
-					lastWordFreq = Integer.valueOf(line.split("\\s")[1]);
-					break;
-				}
-			}
-			br.close();
-			br = new BufferedReader(new FileReader("bigrams/" + filesDirectories.get("person_name").split("\\s")[1]));
-			while ((line = br.readLine()) != null) {
-				String[] stringArray = line.split("\\s");
-				if (stringArray[0].equals(lastWord) && stringArray[1].equals(word)) {
-					wordAfterLastWordFreq = Integer.valueOf(line.split("\\s")[2]);
-					break;
-				}
-			}
-			br.close();
-			if(result < (wordAfterLastWordFreq / lastWordFreq))
-				result = wordAfterLastWordFreq / lastWordFreq;
-			
-			//======================production_company=============/
-			br = new BufferedReader(new FileReader("unigrams/" + filesDirectories.get("production_company").split("\\s")[0]));
-			while ((line = br.readLine()) != null) {
-				if (line.startsWith(lastWord)) {
-					lastWordFreq = Integer.valueOf(line.split("\\s")[1]);
-					break;
-				}
-			}
-			br.close();
-			br = new BufferedReader(new FileReader("bigrams/" + filesDirectories.get("production_company").split("\\s")[1]));
-			while ((line = br.readLine()) != null) {
-				String[] stringArray = line.split("\\s");
-				if (stringArray[0].equals(lastWord) && stringArray[1].equals(word)) {
-					wordAfterLastWordFreq = Integer.valueOf(line.split("\\s")[2]);
-					break;
-				}
-			}
-			br.close();
-			if(result < (wordAfterLastWordFreq / lastWordFreq))
-				result = wordAfterLastWordFreq / lastWordFreq;
-			
-			//======================production country=============/
-			br = new BufferedReader(new FileReader("unigrams/" + filesDirectories.get("production_country").split("\\s")[0]));
-			while ((line = br.readLine()) != null) {
-				if (line.startsWith(lastWord)) {
-					lastWordFreq = Integer.valueOf(line.split("\\s")[1]);
-					break;
-				}
-			}
-			br.close();
-			br = new BufferedReader(new FileReader("bigrams/" + filesDirectories.get("production_country").split("\\s")[1]));
-			while ((line = br.readLine()) != null) {
-				String[] stringArray = line.split("\\s");
-				if (stringArray[0].equals(lastWord) && stringArray[1].equals(word)) {
-					wordAfterLastWordFreq = Integer.valueOf(line.split("\\s")[2]);
-					break;
-				}
-			}
-			br.close();
-			if(result < (wordAfterLastWordFreq / lastWordFreq))
-				result = wordAfterLastWordFreq / lastWordFreq;
-			
-			//======================release_date=============/
-			br = new BufferedReader(new FileReader("unigrams/" + filesDirectories.get("release_date").split("\\s")[0]));
-			while ((line = br.readLine()) != null) {
-				if (line.startsWith(lastWord)) {
-					lastWordFreq = Integer.valueOf(line.split("\\s")[1]);
-					break;
-				}
-			}
-			br.close();
-			br = new BufferedReader(new FileReader("bigrams/" + filesDirectories.get("release_date").split("\\s")[1]));
-			while ((line = br.readLine()) != null) {
-				String[] stringArray = line.split("\\s");
-				if (stringArray[0].equals(lastWord) && stringArray[1].equals(word)) {
-					wordAfterLastWordFreq = Integer.valueOf(line.split("\\s")[2]);
-					break;
-				}
-			}
-			br.close();
-			if(result < (wordAfterLastWordFreq / lastWordFreq))
-				result = wordAfterLastWordFreq / lastWordFreq;
-			
-			//======================revenue=============/
-			br = new BufferedReader(new FileReader("unigrams/" + filesDirectories.get("revenue").split("\\s")[0]));
-			while ((line = br.readLine()) != null) {
-				if (line.startsWith(lastWord)) {
-					lastWordFreq = Integer.valueOf(line.split("\\s")[1]);
-					break;
-				}
-			}
-			br.close();
-			br = new BufferedReader(new FileReader("bigrams/" + filesDirectories.get("revenue").split("\\s")[1]));
-			while ((line = br.readLine()) != null) {
-				String[] stringArray = line.split("\\s");
-				if (stringArray[0].equals(lastWord) && stringArray[1].equals(word)) {
-					wordAfterLastWordFreq = Integer.valueOf(line.split("\\s")[2]);
-					break;
-				}
-			}
-			br.close();
-			if(result < (wordAfterLastWordFreq / lastWordFreq))
-				result = wordAfterLastWordFreq / lastWordFreq;
-			
-			//======================runtime=============/
-			br = new BufferedReader(new FileReader("unigrams/" + filesDirectories.get("runtime").split("\\s")[0]));
-			while ((line = br.readLine()) != null) {
-				if (line.startsWith(lastWord)) {
-					lastWordFreq = Integer.valueOf(line.split("\\s")[1]);
-					break;
-				}
-			}
-			br.close();
-			br = new BufferedReader(new FileReader("bigrams/" + filesDirectories.get("runtime").split("\\s")[1]));
-			while ((line = br.readLine()) != null) {
-				String[] stringArray = line.split("\\s");
-				if (stringArray[0].equals(lastWord) && stringArray[1].equals(word)) {
-					wordAfterLastWordFreq = Integer.valueOf(line.split("\\s")[2]);
-					break;
-				}
-			}
-			br.close();
-			if(result < (wordAfterLastWordFreq / lastWordFreq))
-				result = wordAfterLastWordFreq / lastWordFreq;
-			
-			
-			//======================spoken_language=============/
-			br = new BufferedReader(new FileReader("unigrams/" + filesDirectories.get("spoken_language").split("\\s")[0]));
-			while ((line = br.readLine()) != null) {
-				if (line.startsWith(lastWord)) {
-					lastWordFreq = Integer.valueOf(line.split("\\s")[1]);
-					break;
-				}
-			}
-			br.close();
-			br = new BufferedReader(new FileReader("bigrams/" + filesDirectories.get("spoken_language").split("\\s")[1]));
-			while ((line = br.readLine()) != null) {
-				String[] stringArray = line.split("\\s");
-				if (stringArray[0].equals(lastWord) && stringArray[1].equals(word)) {
-					wordAfterLastWordFreq = Integer.valueOf(line.split("\\s")[2]);
-					break;
-				}
-			}
-			br.close();
-			if(result < (wordAfterLastWordFreq / lastWordFreq))
-				result = wordAfterLastWordFreq / lastWordFreq;
-			
-			//======================vote_avg=============/
-			br = new BufferedReader(new FileReader("unigrams/" + filesDirectories.get("vote_avg").split("\\s")[0]));
-			while ((line = br.readLine()) != null) {
-				if (line.startsWith(lastWord)) {
-					lastWordFreq = Integer.valueOf(line.split("\\s")[1]);
-					break;
-				}
-			}
-			br.close();
-			br = new BufferedReader(new FileReader("bigrams/" + filesDirectories.get("vote_avg").split("\\s")[1]));
-			while ((line = br.readLine()) != null) {
-				String[] stringArray = line.split("\\s");
-				if (stringArray[0].equals(lastWord) && stringArray[1].equals(word)) {
-					wordAfterLastWordFreq = Integer.valueOf(line.split("\\s")[2]);
-					break;
-				}
-			}
-			br.close();
-			if(result < (wordAfterLastWordFreq / lastWordFreq))
-				result = wordAfterLastWordFreq / lastWordFreq;
-			
-//			System.out.println(wordAfterLastWordFreq + "/" + lastWordFreq);
-//			System.out.println("======");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (NumberFormatException e) {
@@ -389,6 +87,25 @@ public class LanguageModelProcessor {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return result;
+		if (lastWordFreq != 0 && wordAfterLastWordFreq!=0)
+			return wordAfterLastWordFreq / lastWordFreq;
+		else
+			return conditionalProbabilitiesException(tag);
+	}
+
+	private double conditionalProbabilitiesException(String tag) {
+		double counter = 0;
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader("unigrams/" + filesDirectories.get(tag).split("\\s")[0]));
+			while (reader.readLine() != null) {
+				counter++;
+			}
+			reader.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return 1.0/counter;
 	}
 }

@@ -16,7 +16,6 @@ public class TextFileProcessor {
 			String line;
 			while ((line = br.readLine()) != null) {
 				processor.processNewQuestion(DataProcessor.checkLastCharacter(line.trim()));
-				break;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

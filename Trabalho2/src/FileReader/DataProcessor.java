@@ -52,6 +52,7 @@ public class DataProcessor {
 		for (String word : stringArray) {
 			processWord(tabSplit[0].trim(), word);
 		}
+		processWord(tabSplit[0].trim(), "<\\s>");
 		lastRead = "<s>";
 	}
 
