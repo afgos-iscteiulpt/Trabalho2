@@ -43,19 +43,22 @@ public class ReadFileQuestoes {
 	}
 
 	public static void ReadTargetFile(String question) {
+		ArrayList<String> possibleMatches = new ArrayList<>();
 		for (File f : map.keySet()) {
 			try (BufferedReader br = new BufferedReader(new FileReader(f))) {
 				String line;
 				while ((line = br.readLine()) != null) {
 					line = " " + line + " ";
-					// System.out.println(question.matches(""+line+"\\W$"));
+					
 					if (question.contains(line)) {
-						//System.out.println(question + " -" + line);
-
+						possibleMatches.add(line);
+						
+						/*
 						String q2 = question;
 						q2 = q2.replaceAll(line, " " + map.get(f) + " ");
-						
+	
 						WriteToTargetFile(q2);
+						*/
 
 					}
 				}
