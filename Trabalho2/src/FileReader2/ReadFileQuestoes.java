@@ -4,10 +4,12 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
@@ -66,8 +68,6 @@ public class ReadFileQuestoes {
 					String regexWord = GetRegexWordPattern(line);
 					String pattern = "(.*)[\\s|\\t]" + regexWord + "[\\s|\\W](.*)";
 					if (q1.matches(pattern)) {
-						// System.out.println(question);
-						// System.out.println("regexword --" + regexWord);
 						possibleMatches.put(line, map.get(f));
 					}
 				}
@@ -77,52 +77,35 @@ public class ReadFileQuestoes {
 			}
 		}
 
-		/*for (String g : possibleMatches.keySet()) {
-			System.out.println("qwe --" + g + "  TAG ----" + possibleMatches.get(g));
-		}*/
-
 		CheckForSubstrings(possibleMatches);
-
-		/*for (String g : possibleMatches.keySet()) {
-			System.out.println("qwe --" + g + "  TAG ----" + possibleMatches.get(g));
-		}*/
-
+		String replaced = q1;
 		for (String g : possibleMatches.keySet()) {
-			String replaced = q1.replaceAll(g, possibleMatches.get(g));
-			if(splitquestion.length > 1) {
-				replaced = splitquestion[0]+"\t" +replaced;
-			}
-			
-			WriteToTargetFile(replaced);
+			replaced = replaced.replaceAll(g, possibleMatches.get(g));	
 		}
+		if(splitquestion.length > 1) {
+			replaced = splitquestion[0]+"\t" +replaced;
+		}
+		
+		if(!possibleMatches.isEmpty()) {
+			WriteToTargetFile(replaced);
+		}	
 
 	}
 
 	public void CheckForSubstrings(Map<String, String> matches) {
 		Map<String, String> map2 = matches;
-		String t1 = "";
-		String t2 = "";
-
 		try {
 			Iterator it = matches.keySet().iterator();
 			while (it.hasNext()) {
 				String g1 = (String) it.next();
-				//System.out.println("g1 ---" + g1);
 				for (String g2 : matches.keySet()) {
-					t1 = g1;
-					//System.out.println("g2 ---" + g2);
-
-					t2 = g2;
-
 					if (g2.contains(g1) && !g2.equals(g1)) {
-						//System.out.println("Compare --- " + g2.contains(g1));
 						it.remove();
 						break;
 					}
 				}
 			}
 		} catch (ConcurrentModificationException e) {
-		
 			e.printStackTrace();
 		}
 
@@ -130,25 +113,23 @@ public class ReadFileQuestoes {
 	}
 
 	public String GetRegexWordPattern(String word) {
-		String regexRestrictions = "[^A-z0-9|\\s|\\.|\\,|\\']";
+		String regexRestrictions = "[^A-z0-9|\\s|^\\W]";
 		String regexword = "";
 		String[] characters = word.split("");
 		for (String g : characters) {
 			String g1 = g;
 			if (g.matches(regexRestrictions)) {
 				g1 = "\\" + g;
-				// System.out.println(g);
-				// System.out.println(g.matches("[^A-z0-9|\\s]"));
 			}
 			regexword += g1;
 		}
-
+		
 		return regexword;
 	}
 
 	public void WriteToTargetFile(String line) {
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(targetfile, true));
+			BufferedWriter writer = new BufferedWriter (new OutputStreamWriter(new FileOutputStream(targetfile.getAbsolutePath(),true), "UTF-8"));
 			writer.append(line + "\n");
 			writer.close();
 		} catch (IOException e) {

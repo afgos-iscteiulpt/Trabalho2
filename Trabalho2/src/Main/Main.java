@@ -1,6 +1,9 @@
 package Main;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 
 import FileReader.DataProcessor;
 import FileReader.TextFileModifier;
@@ -14,25 +17,12 @@ public class Main {
 		DataProcessor processor = new DataProcessor();
 		ReadFileQuestoes subprocessor = new ReadFileQuestoes();
 		
-		String question = "original_title 	What is the shortest movie ever released?";
-		String question2 = "What are the languages that are spoken in Ocean's Eleven?";
-		String[] splitq = question.split("\t");
-		String[] splitq2 = question2.split("\t");
-		
-		for(String g: splitq) {
-			System.out.println(g);
-		}
-	
-		for(String g: splitq2) {
-			System.out.println(g);
-		}
-		
 		
 		//Substituir palavras nos ficheiros das questoes
 		
 		subprocessor.ReadQuestion(new File("corpora/QuestoesConhecidas.txt"),new File("corpora/QuestoesConhecidasTest.txt"));
 		
-		subprocessor.ReadQuestion(new File("corpora/NovasQuestoes.txt"), new File("corpora/NovasQuestoesTest.txt"));
+		//subprocessor.ReadQuestion(new File("corpora/NovasQuestoes.txt"), new File("corpora/NovasQuestoesTest.txt"));
 		
 	
 		//Unigrams
