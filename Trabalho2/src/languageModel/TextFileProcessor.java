@@ -15,7 +15,7 @@ public class TextFileProcessor {
 		try (BufferedReader br = new BufferedReader(new FileReader(novasQuestoes))) {
 			String line;
 			while ((line = br.readLine()) != null) {
-				processor.processNewQuestion(DataProcessor.checkLastCharacter(line.trim()));
+				processor.processNewQuestion(line.substring(0, line.trim().length()-1));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

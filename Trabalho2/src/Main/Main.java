@@ -1,9 +1,6 @@
 package Main;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 
 import FileReader.DataProcessor;
 import FileReader.TextFileModifier;
