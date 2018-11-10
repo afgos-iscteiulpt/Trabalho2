@@ -68,7 +68,7 @@ public class ReadFileQuestoes {
 				String line;
 				while ((line = br.readLine()) != null && line.trim().length() != 0) {
 					String regexWord = GetRegexWordPattern(line);
-					String pattern = "(.*)(^" + regexWord + "[\\s|\\W]|[\\s|\\t]" + regexWord + "[\\s|\\W])(.*)";
+					String pattern ="(.*)(^"+ regexWord + "[\\s|\\W|\\n]|[\\s|\\t]" + regexWord + "[\\s|\\W]|[\\s|\\t]" + regexWord +"$)(.*)";
 					if (q1.matches(pattern)) {
 						possibleMatches.put(line, map.get(f));
 					}
@@ -114,7 +114,7 @@ public class ReadFileQuestoes {
 	}
 
 	public String GetRegexWordPattern(String word) {
-		String regexRestrictions = "[^A-z0-9|\\s|^\\W]|\\.";
+		String regexRestrictions = "[^A-z0-9|\\s|\\W]|\\.";
 		String regexword = "";
 		String[] characters = word.split("");
 		for (String g : characters) {

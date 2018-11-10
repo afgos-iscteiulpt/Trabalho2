@@ -1,0 +1,16 @@
+actor_name unigrams/unigrams_actor_name.txt bigrams/bigrams_actor_name.txt
+budget unigrams/unigrams_budget.txt bigrams/bigrams_budget.txt
+character_name unigrams/unigrams_character_name.txt bigrams/bigrams_character_name.txt
+genre unigrams/unigrams_genre.txt bigrams/bigrams_genre.txt
+keyword unigrams/unigrams_keyword.txt bigrams/bigrams_keyword.txt
+original_language unigrams/unigrams_original_language.txt bigrams/bigrams_original_language.txt
+original_title unigrams/unigrams_original_title.txt bigrams/bigrams_original_title.txt
+overview unigrams/unigrams_overview.txt bigrams/bigrams_overview.txt
+person_name unigrams/unigrams_person_name.txt bigrams/bigrams_person_name.txt
+production_company unigrams/unigrams_production_company.txt bigrams/bigrams_production_company.txt
+production_country unigrams/unigrams_production_country.txt bigrams/bigrams_production_country.txt
+release_date unigrams/unigrams_release_date.txt bigrams/bigrams_release_date.txt
+revenue unigrams/unigrams_revenue.txt bigrams/bigrams_revenue.txt
+runtime unigrams/unigrams_runtime.txt bigrams/bigrams_runtime.txt
+spoken_language unigrams/unigrams_spoken_language.txt bigrams/bigrams_spoken_language.txt
+vote_avg unigrams/unigrams_vote_avg.txt bigrams/bigrams_vote_avg.txt
