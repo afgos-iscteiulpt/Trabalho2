@@ -39,6 +39,7 @@ public class ReadFileQuestoes {
 	public void ReadQuestion(File qfile, File tfile) {
 		questionfile = qfile;
 		targetfile = tfile;
+		targetfile.delete();
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(questionfile.getAbsolutePath())))) {
 			String question;
 			while ((question = br.readLine()) != null) {

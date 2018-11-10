@@ -20,9 +20,10 @@ public class Main {
 		
 		//Substituir palavras nos ficheiros das questoes
 		
-		subprocessor.ReadQuestion(new File("corpora/QuestoesConhecidas.txt"),new File("corpora/QuestoesConhecidasTest.txt"));
+		//subprocessor.ReadQuestion(new File("corpora/QuestoesConhecidas.txt"),new File("corpora/QuestoesConhecidasTags.txt"));
 		
-		//subprocessor.ReadQuestion(new File("corpora/NovasQuestoes.txt"), new File("corpora/NovasQuestoesTest.txt"));
+		subprocessor.ReadQuestion(new File("corpora/NovasQuestoes.txt"), new File("corpora/NovasQuestoesTags.txt"));
+		//subprocessor.ReadQuestion(new File("corpora/NovasQuestoesMaisRecentes.txt"), new File("corpora/NovasQuestoesMaisRecentesTags.txt"));
 		
 	
 		//Unigrams
