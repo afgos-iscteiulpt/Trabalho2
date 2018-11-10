@@ -1,4 +1,4 @@
-package FileReader2;
+package fileReader2;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

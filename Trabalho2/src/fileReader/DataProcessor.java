@@ -1,4 +1,4 @@
-package FileReader;
+package fileReader;
 
 import java.util.Set;
 
@@ -58,7 +58,7 @@ public class DataProcessor {
 
 	public void processWord(String tag, String word) {
 		Integer tableValue;
-		word = checkLastCharacter(word);
+		word = checkForApostrophe(word);
 		switch (tag) {
 		case "actor_name":
 			actor_name_unigram.add(word);
@@ -192,17 +192,11 @@ public class DataProcessor {
 		lastRead = word;
 	}
 	
-	/**
-	 * Receives a String
-	 * Checks if the last charater is an interrogation point and deletes it if it is
-	 */
-	public static String checkLastCharacter(String word) {
-		if(word.charAt(word.length()-1) == '?') {
-			return word.substring(0, word.length()-1);
-		}
+	private String checkForApostrophe(String word) {
+		if(word.contains("'"))
+			return word.substring(0, word.indexOf("'"));
 		return word;
 	}
-	
 
 	public void countAllObjects(Multiset<String> set) {
 		Set<String> uniqueSet = set.elementSet();

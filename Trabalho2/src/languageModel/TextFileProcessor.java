@@ -6,16 +6,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import FileReader.DataProcessor;
+import fileReader.DataProcessor;
 
 public class TextFileProcessor {
 
-	public static void readNewQuestionsFile(File filesPair, File novasQuestoes) {
+	public static void readNewQuestionsFile(File filesPair, File novasQuestoes, boolean smoothing) {
 		LanguageModelProcessor processor = new LanguageModelProcessor(filesPair);
 		try (BufferedReader br = new BufferedReader(new FileReader(novasQuestoes))) {
 			String line;
 			while ((line = br.readLine()) != null) {
-				processor.processNewQuestion(DataProcessor.checkLastCharacter(line.trim()));
+				processor.processNewQuestion(line.substring(0, line.trim().length()-1), smoothing);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

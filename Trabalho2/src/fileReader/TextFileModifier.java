@@ -1,4 +1,4 @@
-package FileReader;
+package fileReader;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -21,7 +21,7 @@ public class TextFileModifier {
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			String line;
 			while ((line = br.readLine()) != null) {
-				processor.processQuestion(line);
+				processor.processQuestion(line.substring(0, line.trim().length()-1));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

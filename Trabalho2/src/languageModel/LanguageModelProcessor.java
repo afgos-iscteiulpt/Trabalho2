@@ -1,13 +1,17 @@
 package languageModel;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+
 import resources.Tags;
 
 public class LanguageModelProcessor {
@@ -42,24 +46,33 @@ public class LanguageModelProcessor {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		for(int i=0; i<tagsResultados.size(); i++) {
-			System.out.println(tagsResultados.get(i) + "/-/" + generatedTags.get(i));
-			if(tagsResultados.get(i).equals(generatedTags.get(i)))
-				truePositives++;
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter("resultadosTags" + System.currentTimeMillis() + ".txt"));
+			for (int i = 0; i < tagsResultados.size(); i++) {
+				writer.write(generatedTags.get(i)+"\n");
+				System.out.println(tagsResultados.get(i) + "/-/" + generatedTags.get(i));
+				if (tagsResultados.get(i).equals(generatedTags.get(i)))
+					truePositives++;
+			}
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		System.out.println(truePositives/tagsResultados.size());
+		System.out.println(truePositives / tagsResultados.size());
 	}
 
-	public void processNewQuestion(String s) {
+	public void processNewQuestion(String s, boolean smoothing) {
 		double probability;
 		double higherProbability = 0;
-		String tag = Tags.actor_name.toString();
+		String tag = "No tag predicted";
 		String[] stringArray = s.split("\\s");
 		for (Tags t : Tags.values()) {
 			probability = 1;
 			String lastWord = "<s>";
 			for (String word : stringArray) {
-				probability = probability * conditionalProbabilities(t.toString(), word, lastWord);
+				probability = probability * conditionalProbabilities(t.toString(), word, lastWord, smoothing);
 				lastWord = word;
 			}
 			if (probability > higherProbability) {
@@ -70,12 +83,12 @@ public class LanguageModelProcessor {
 		generatedTags.add(tag);
 	}
 
-	private double conditionalProbabilities(String tag, String word, String lastWord) {
+	private double conditionalProbabilities(String tag, String word, String lastWord, boolean smoothing) {
 		double lastWordFreq = 0;
 		double wordAfterLastWordFreq = 0;
 		try {
 			BufferedReader br = new BufferedReader(
-					new FileReader("unigrams/" + filesDirectories.get(tag).split("\\s")[0]));
+					new FileReader(filesDirectories.get(tag).split("\\s")[0]));
 			String line;
 			while ((line = br.readLine()) != null) {
 				if (line.startsWith(lastWord)) {
@@ -84,7 +97,7 @@ public class LanguageModelProcessor {
 				}
 			}
 			br.close();
-			br = new BufferedReader(new FileReader("bigrams/" + filesDirectories.get(tag).split("\\s")[1]));
+			br = new BufferedReader(new FileReader(filesDirectories.get(tag).split("\\s")[1]));
 			while ((line = br.readLine()) != null) {
 				String[] stringArray = line.split("\\s");
 				if (stringArray[0].equals(lastWord) && stringArray[1].equals(word)) {
@@ -100,17 +113,19 @@ public class LanguageModelProcessor {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if (lastWordFreq != 0 && wordAfterLastWordFreq != 0)
-			return wordAfterLastWordFreq / lastWordFreq;
-		else
-			return conditionalProbabilitiesException(tag);
+		if (smoothing)
+			if (lastWordFreq == 0 || wordAfterLastWordFreq == 0)
+				return conditionalProbabilitiesException(tag, lastWordFreq, wordAfterLastWordFreq);
+		if (lastWordFreq == 0)
+				return 0;
+		return wordAfterLastWordFreq / lastWordFreq;
 	}
 
-	private double conditionalProbabilitiesException(String tag) {
+	private double conditionalProbabilitiesException(String tag, double lastWordFreq, double wordAfterLastWordFreq) {
 		double counter = 0;
 		try {
 			BufferedReader reader = new BufferedReader(
-					new FileReader("unigrams/" + filesDirectories.get(tag).split("\\s")[0]));
+					new FileReader(filesDirectories.get(tag).split("\\s")[0]));
 			while (reader.readLine() != null) {
 				counter++;
 			}
@@ -120,6 +135,10 @@ public class LanguageModelProcessor {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return 1.0 / counter;
+		if (lastWordFreq == 0)
+			lastWordFreq = counter;
+		if (wordAfterLastWordFreq == 0)
+			wordAfterLastWordFreq = 1.0; 
+		return wordAfterLastWordFreq/lastWordFreq;
 	}
 }
