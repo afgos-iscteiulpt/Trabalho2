@@ -12,17 +12,18 @@ public class Main {
 		new File("unigrams").mkdirs();
 		new File("bigrams").mkdirs();
 		DataProcessor processor = new DataProcessor();
-		ReadFileQuestoes subprocessor = new ReadFileQuestoes();
-		
+		ReadFileQuestoes subprocessor = new ReadFileQuestoes();		
 		
 		//Substituir palavras nos ficheiros das questoes
 		
-		subprocessor.ReadQuestion(new File("corpora/QuestoesConhecidas.txt"),new File("corpora/QuestoesConhecidasTest.txt"));
 		
-		//subprocessor.ReadQuestion(new File("corpora/NovasQuestoes.txt"), new File("corpora/NovasQuestoesTest.txt"));
+		subprocessor.ReadQuestion(new File("corpora/QuestoesConhecidas.txt"),new File("corpora/QuestoesConhecidasTags.txt"));
+		subprocessor.ReadQuestion(new File("corpora/NovasQuestoes.txt"), new File("corpora/NovasQuestoesTags.txt"));
+		subprocessor.ReadQuestion(new File("corpora/NovasQuestoesMaisRecentes.txt"), new File("corpora/NovasQuestoesMaisRecentesTags.txt"));
 		
 	
 		//Unigrams
+		/*
 		TextFileModifier.readFile(new File("corpora/QuestoesConhecidas.txt"), processor);
 		TextFileModifier.writeUnigramFile("unigrams/unigrams_actor_name.txt", processor.getActor_name_unigram());
 		TextFileModifier.writeUnigramFile("unigrams/unigrams_budget.txt", processor.getBudget_unigram());
@@ -94,6 +95,7 @@ public class Main {
 		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_spoken_language_smooth.txt", processor.getSpoken_language_bigram());
 		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_runtime_smooth.txt", processor.getRuntime_bigram());
 		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_vote_avg_smooth.txt", processor.getVote_avg_bigram());
+		*/
 	
 	}
 

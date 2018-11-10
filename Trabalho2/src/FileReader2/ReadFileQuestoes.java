@@ -39,6 +39,7 @@ public class ReadFileQuestoes {
 	public void ReadQuestion(File qfile, File tfile) {
 		questionfile = qfile;
 		targetfile = tfile;
+		targetfile.delete();
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(questionfile.getAbsolutePath())))) {
 			String question;
 			while ((question = br.readLine()) != null) {
@@ -51,6 +52,7 @@ public class ReadFileQuestoes {
 
 	public void ReadTargetFile(String question) {
 		String[] splitquestion = question.split("\t");
+		
 		String q1;
 		
 		if(splitquestion.length == 1) {
@@ -66,17 +68,16 @@ public class ReadFileQuestoes {
 				String line;
 				while ((line = br.readLine()) != null && line.trim().length() != 0) {
 					String regexWord = GetRegexWordPattern(line);
-					String pattern = "(.*)[\\s|\\t]" + regexWord + "[\\s|\\W](.*)";
+					String pattern = "(.*)(^"+ regexWord + "[\\s|\\W]|[\\s|\\t]" + regexWord + "[\\s|\\W])(.*)";
 					if (q1.matches(pattern)) {
 						possibleMatches.put(line, map.get(f));
 					}
 				}
-
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-
+		
 		CheckForSubstrings(possibleMatches);
 		String replaced = q1;
 		for (String g : possibleMatches.keySet()) {
@@ -113,12 +114,13 @@ public class ReadFileQuestoes {
 	}
 
 	public String GetRegexWordPattern(String word) {
-		String regexRestrictions = "[^A-z0-9|\\s|^\\W]";
+		String regexRestrictions = "[^A-z0-9|\\s|^\\W]|\\.";
 		String regexword = "";
 		String[] characters = word.split("");
 		for (String g : characters) {
 			String g1 = g;
 			if (g.matches(regexRestrictions)) {
+				
 				g1 = "\\" + g;
 			}
 			regexword += g1;
