@@ -1,5 +1,5 @@
 actor_name 	What was the character that Tom Cruise played in Top Gun?
-actor_name 	What role did Anthony Hopkins play in Training day?
+actor_name 	What role did Anthony Hopkins play in Training Day?
 actor_name 	Tell me the role played by T. J. Storm in G.I. Joe: Retaliation.
 actor_name 	What was the role taken by Karl J. Martin in the movie The Twilight Saga: Breaking Dawn - Part 2?
 actor_name 	In total, how many characters are there in Charlie's Angels: Full Throttle?  
@@ -9,7 +9,7 @@ budget 	What was The Incredibles's budget?
 budget 	Money spent on Some like it Hot?
 budget 	Rush Hour 2 had how much budget? 
 character_name 	What was the character that Tom Cruise played in Top Gun?
-character_name 	What role did Anthony Hopkins play in Training day?
+character_name 	What role did Anthony Hopkins play in Training Day?
 character_name 	Tell me the role played by T. J. Storm in G.I. Joe: Retaliation.
 character_name 	What was the role taken by Karl J. Martin in the movie The Twilight Saga: Breaking Dawn - Part 2?
 character_name 	In total, how many characters are there in Charlie's Angels: Full Throttle? 
@@ -28,7 +28,7 @@ revenue 	How much money was made with the movie Jurassic Park?
 revenue 	What was the box office made by Casino Royale?
 revenue 	How much profit did Transformers generate? 
 revenue 	What was the revenue of The Italian Job?
-production_country 	Despicable me was shot in how many countries? 
+production_country 	Despicable Me was shot in how many countries? 
 production_country 	The production of Public Enemies was made in how many countries?
 production_country 	What's the number of countries where Stuart Little was produced in? 
 production_country 	In what countries was Ice Age: The Meltdown produced? 
@@ -78,7 +78,3 @@ overview 	Give me the overview of Star Trek: Nemesis.
 overview 	What's the overview of the movie The Relic? 
 overview 	Overview of Righteous Kill. 
 overview 	Tell me the overview of Garfield: A Tail of Two Kitties.
-
-
-
-
