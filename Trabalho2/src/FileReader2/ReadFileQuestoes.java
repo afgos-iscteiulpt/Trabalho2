@@ -52,23 +52,23 @@ public class ReadFileQuestoes {
 
 	public void ReadTargetFile(String question) {
 		String[] splitquestion = question.split("\t");
-		
+
 		String q1;
-		
-		if(splitquestion.length == 1) {
+
+		if (splitquestion.length == 1) {
 			q1 = splitquestion[0];
 		} else {
 			q1 = splitquestion[1];
 		}
 		System.out.println(q1);
-		
+
 		Map<String, String> possibleMatches = new HashMap<String, String>();
 		for (File f : map.keySet()) {
 			try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f), "UTF-8"))) {
 				String line;
 				while ((line = br.readLine()) != null && line.trim().length() != 0) {
 					String regexWord = GetRegexWordPattern(line);
-					String pattern = "(.*)(^"+ regexWord + "[\\s|\\W]|[\\s|\\t]" + regexWord + "[\\s|\\W])(.*)";
+					String pattern = "(.*)(^" + regexWord + "[\\s|\\W]|[\\s|\\t]" + regexWord + "[\\s|\\W])(.*)";
 					if (q1.matches(pattern)) {
 						possibleMatches.put(line, map.get(f));
 					}
@@ -77,19 +77,19 @@ public class ReadFileQuestoes {
 				e.printStackTrace();
 			}
 		}
-		
+
 		CheckForSubstrings(possibleMatches);
 		String replaced = q1;
 		for (String g : possibleMatches.keySet()) {
-			replaced = replaced.replaceAll(g, possibleMatches.get(g));	
+			replaced = replaced.replaceAll(g, possibleMatches.get(g));
 		}
-		if(splitquestion.length > 1) {
-			replaced = splitquestion[0]+"\t" +replaced;
+		if (splitquestion.length > 1) {
+			replaced = splitquestion[0] + "\t" + replaced;
 		}
-		
-		if(!possibleMatches.isEmpty()) {
+
+		if (!possibleMatches.isEmpty()) {
 			WriteToTargetFile(replaced);
-		}	
+		}
 
 	}
 
@@ -120,18 +120,19 @@ public class ReadFileQuestoes {
 		for (String g : characters) {
 			String g1 = g;
 			if (g.matches(regexRestrictions)) {
-				
+
 				g1 = "\\" + g;
 			}
 			regexword += g1;
 		}
-		
+
 		return regexword;
 	}
 
 	public void WriteToTargetFile(String line) {
 		try {
-			BufferedWriter writer = new BufferedWriter (new OutputStreamWriter(new FileOutputStream(targetfile.getAbsolutePath(),true), "UTF-8"));
+			BufferedWriter writer = new BufferedWriter(
+					new OutputStreamWriter(new FileOutputStream(targetfile.getAbsolutePath(), true), "UTF-8"));
 			writer.append(line + "\n");
 			writer.close();
 		} catch (IOException e) {

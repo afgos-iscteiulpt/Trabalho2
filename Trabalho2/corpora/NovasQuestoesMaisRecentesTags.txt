@@ -1,0 +1,78 @@
+actor_name 	What was the character that _PEOPLE_ played in _MOVIE_?
+actor_name 	What role did _PEOPLE_ _KEYWORD_ in _MOVIE_?
+actor_name 	Tell me the role played by _PEOPLE_ in _MOVIE_.
+actor_name 	What was the role taken by _PEOPLE_ in the movie _MOVIE_?
+actor_name 	In total, how many characters are there in _MOVIE_?  
+budget 	What was the budget of _MOVIE_?
+budget 	How much budget did _MOVIE_ have?
+budget 	What was _MOVIE_'s budget?
+budget 	_MOVIE_ had how much budget? 
+character_name 	What was the character that _PEOPLE_ played in _MOVIE_?
+character_name 	What role did _PEOPLE_ _KEYWORD_ in _MOVIE_?
+character_name 	Tell me the role played by _PEOPLE_ in _MOVIE_.
+character_name 	What was the role taken by _PEOPLE_ in the movie _MOVIE_?
+character_name 	In total, how many characters are there in _MOVIE_? 
+genre 	What are the genres of the movie _MOVIE_?
+genre 	What kind of movie is _MOVIE_? 
+genre 	To which genres does the movie _MOVIE_ belong? 
+genre 	Tell me the genres of _MOVIE_.
+original_title 	How many _KEYWORD_ did _PEOPLE_ direct?
+original_title 	_PEOPLE_ participated in how many _KEYWORD_ during his _KEYWORD_? 
+original_title 	What was the first movie to be directed by _PEOPLE_? 
+original_title 	_PEOPLE_ started his directing _KEYWORD_ with what movie? 
+original_title 	What was the first movie directed by _PEOPLE_?
+revenue 	What was the _KEYWORD_ made by the movie _MOVIE_?
+revenue 	How much _KEYWORD_ was made with the movie _MOVIE_? 
+revenue 	What was the _KEYWORD_ _KEYWORD_ made by _MOVIE_?
+revenue 	How much _KEYWORD_ did _MOVIE_ generate? 
+revenue 	What was the revenue of _MOVIE_?
+production_country 	_MOVIE_ was _KEYWORD_ in how many countries? 
+production_country 	The production of _MOVIE_ was made in how many countries?
+production_country 	What's the _CHARACTER_ of countries where _MOVIE_ was produced in? 
+production_country 	In what countries was _MOVIE_ produced? 
+production_country 	In which countries was _MOVIE_ _KEYWORD_?
+spoken_language 	How many different languages are spoken in _MOVIE_?
+spoken_language 	During the movie _MOVIE_, how many languages are used? 
+spoken_language 	How many languages can be heard in _MOVIE_?
+spoken_language 	On the movie _MOVIE_, how many idioms can be heard?
+spoken_language 	What's the _CHARACTER_ of spoken languages in _MOVIE_?
+vote_avg 	In average, what was the rating given to the movie _MOVIE_? 
+vote_avg 	What was the _KEYWORD_ average of _MOVIE_? 
+vote_avg 	What was the rating of _MOVIE_? 
+vote_avg 	From 0 to 10, what was the average _KEYWORD_ given to _MOVIE_? 
+vote_avg 	What was the rating given to the movie _MOVIE_?~
+keyword 	What are the keywords for the movie _MOVIE_?
+keyword 	Keywords of _MOVIE_.
+keyword 	Tell me the keywords of _MOVIE_.
+keyword 	What are the most relevant words of _MOVIE_?
+keyword 	What are the keywords of _MOVIE_?
+person_name 	Which _KEYWORD_ directed _MOVIE_? 
+person_name 	Who was _MOVIE_'s _KEYWORD_? 
+person_name 	Show me the _KEYWORD_ of _MOVIE_. 
+person_name 	Who was the _KEYWORD_ of _MOVIE_? 
+person_name 	_MOVIE_ was directed by who?
+release_date 	From what _KEYWORD_ is _MOVIE_?
+release_date 	What _KEYWORD_ did the movie _MOVIE_ debut?
+release_date 	In which _KEYWORD_ was _MOVIE_ produced?
+release_date 	On what month was _MOVIE_ released? 
+release_date 	What is the release _KEYWORD_ of _MOVIE_?
+runtime 	What is the _KEYWORD_ _KEYWORD_ of _MOVIE_?
+runtime 	What is the lenght of the movie _MOVIE_?
+runtime 	How long is the movie _MOVIE_?
+runtime 	What is the _KEYWORD_ _KEYWORD_ of _MOVIE_?
+runtime 	What is the _KEYWORD_ _KEYWORD_ of _MOVIE_?
+original_language 	What is the original language spoken in _MOVIE_? 
+original_language 	Which idiom was most used on _MOVIE_?
+original_language 	What is the main language in _MOVIE_? 
+original_language 	What is the main language used in the movie _MOVIE_? 
+original_language 	What is the most used language in _MOVIE_?
+production_company 	The movie _MOVIE_ was produced by how many companies?
+production_company 	Which companies produced _MOVIE_? 
+production_company 	What companies were responsible for the production of the movie _MOVIE_? 
+production_company 	Which companies produced _MOVIE_?
+production_company 	What were the companies that produced _MOVIE_? 
+overview 	What is the overview of _MOVIE_?
+overview 	Give me the overview of _MOVIE_.
+overview 	What's the overview of the movie _MOVIE_? 
+overview 	Overview of _MOVIE_. 
+overview 	Tell me the overview of _MOVIE_.
