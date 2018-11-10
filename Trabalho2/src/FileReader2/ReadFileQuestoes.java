@@ -60,15 +60,16 @@ public class ReadFileQuestoes {
 		} else {
 			q1 = splitquestion[1];
 		}
-		System.out.println(q1);
+		//System.out.println(q1);
 		
 		Map<String, String> possibleMatches = new HashMap<String, String>();
 		for (File f : map.keySet()) {
 			try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f), "UTF-8"))) {
 				String line;
 				while ((line = br.readLine()) != null && line.trim().length() != 0) {
+					
 					String regexWord = GetRegexWordPattern(line);
-					String pattern = "(.*)(^"+ regexWord + "[\\s|\\W]|[\\s|\\t]" + regexWord + "[\\s|\\W])(.*)";
+					String pattern ="(.*)(^"+ regexWord + "[\\s|\\W|\\n]|[\\s|\\t]" + regexWord + "[\\s|\\W]|[\\s|\\t]" + regexWord +"$)(.*)";
 					if (q1.matches(pattern)) {
 						possibleMatches.put(line, map.get(f));
 					}
@@ -79,6 +80,7 @@ public class ReadFileQuestoes {
 		}
 		
 		CheckForSubstrings(possibleMatches);
+		
 		String replaced = q1;
 		for (String g : possibleMatches.keySet()) {
 			replaced = replaced.replaceAll(g, possibleMatches.get(g));	
@@ -114,7 +116,7 @@ public class ReadFileQuestoes {
 	}
 
 	public String GetRegexWordPattern(String word) {
-		String regexRestrictions = "[^A-z0-9|\\s|^\\W]|\\.";
+		String regexRestrictions = "[^A-z0-9|\\s|\\W]|\\.";
 		String regexword = "";
 		String[] characters = word.split("");
 		for (String g : characters) {
