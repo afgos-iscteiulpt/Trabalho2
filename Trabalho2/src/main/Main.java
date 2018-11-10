@@ -1,10 +1,10 @@
-package Main;
+package main;
 
 import java.io.File;
 
-import FileReader.DataProcessor;
-import FileReader.TextFileModifier;
-import FileReader2.ReadFileQuestoes;
+import fileReader.DataProcessor;
+import fileReader.TextFileModifier;
+import fileReader2.ReadFileQuestoes;
 
 public class Main {
 
@@ -12,18 +12,15 @@ public class Main {
 		new File("unigrams").mkdirs();
 		new File("bigrams").mkdirs();
 		DataProcessor processor = new DataProcessor();
-		ReadFileQuestoes subprocessor = new ReadFileQuestoes();		
+		ReadFileQuestoes subprocessor = new ReadFileQuestoes();
 		
 		//Substituir palavras nos ficheiros das questoes
-		
-		
 		subprocessor.ReadQuestion(new File("corpora/QuestoesConhecidas.txt"),new File("corpora/QuestoesConhecidasTags.txt"));
 		subprocessor.ReadQuestion(new File("corpora/NovasQuestoes.txt"), new File("corpora/NovasQuestoesTags.txt"));
 		subprocessor.ReadQuestion(new File("corpora/NovasQuestoesMaisRecentes.txt"), new File("corpora/NovasQuestoesMaisRecentesTags.txt"));
 		
 	
 		//Unigrams
-		/*
 		TextFileModifier.readFile(new File("corpora/QuestoesConhecidas.txt"), processor);
 		TextFileModifier.writeUnigramFile("unigrams/unigrams_actor_name.txt", processor.getActor_name_unigram());
 		TextFileModifier.writeUnigramFile("unigrams/unigrams_budget.txt", processor.getBudget_unigram());
@@ -37,7 +34,7 @@ public class Main {
 		TextFileModifier.writeUnigramFile("unigrams/unigrams_production_company.txt", processor.getProduction_company_unigram());
 		TextFileModifier.writeUnigramFile("unigrams/unigrams_production_country.txt", processor.getProduction_country_unigram());
 		TextFileModifier.writeUnigramFile("unigrams/unigrams_release_date.txt", processor.getRelease_date_unigram());
-		TextFileModifier.writeUnigramFile("unigrams/unigrams_revenue_unigram.txt", processor.getRevenue_unigram());
+		TextFileModifier.writeUnigramFile("unigrams/unigrams_revenue.txt", processor.getRevenue_unigram());
 		TextFileModifier.writeUnigramFile("unigrams/unigrams_spoken_language.txt", processor.getSpoken_language_unigram());
 		TextFileModifier.writeUnigramFile("unigrams/unigrams_runtime.txt", processor.getRuntime_unigram());
 		TextFileModifier.writeUnigramFile("unigrams/unigrams_vote_avg.txt", processor.getVote_avg_unigram());
@@ -55,7 +52,7 @@ public class Main {
 		TextFileModifier.writeBigramFile("bigrams/bigrams_production_company.txt", processor.getProduction_company_bigram());
 		TextFileModifier.writeBigramFile("bigrams/bigrams_production_country.txt", processor.getProduction_country_bigram());
 		TextFileModifier.writeBigramFile("bigrams/bigrams_release_date.txt", processor.getRelease_date_bigram());
-		TextFileModifier.writeBigramFile("bigrams/bigrams_revenue_bigram.txt", processor.getRevenue_bigram());
+		TextFileModifier.writeBigramFile("bigrams/bigrams_revenue.txt", processor.getRevenue_bigram());
 		TextFileModifier.writeBigramFile("bigrams/bigrams_spoken_language.txt", processor.getSpoken_language_bigram());
 		TextFileModifier.writeBigramFile("bigrams/bigrams_runtime.txt", processor.getRuntime_bigram());
 		TextFileModifier.writeBigramFile("bigrams/bigrams_vote_avg.txt", processor.getVote_avg_bigram());
@@ -95,7 +92,6 @@ public class Main {
 		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_spoken_language_smooth.txt", processor.getSpoken_language_bigram());
 		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_runtime_smooth.txt", processor.getRuntime_bigram());
 		TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_vote_avg_smooth.txt", processor.getVote_avg_bigram());
-		*/
 	
 	}
 

@@ -1,4 +1,4 @@
-package FileReader2;
+package fileReader2;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -18,7 +18,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import FileReader.DataProcessor;
+import fileReader.DataProcessor;
 
 public class ReadFileQuestoes {
 

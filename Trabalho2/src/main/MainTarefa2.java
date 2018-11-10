@@ -1,4 +1,4 @@
-package Main;
+package main;
 
 import java.io.File;
 
@@ -9,8 +9,7 @@ public class MainTarefa2 {
 	public static void main(String[] args) {
 			File filesPair = new File(args[0]);
 			File novasQuestoes = new File(args[1]);
-			TextFileProcessor.readNewQuestionsFile(filesPair, novasQuestoes);
-			
+			TextFileProcessor.readNewQuestionsFile(filesPair, novasQuestoes, false);
 	}
 
 }
