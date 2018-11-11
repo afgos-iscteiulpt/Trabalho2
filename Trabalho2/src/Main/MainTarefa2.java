@@ -10,6 +10,8 @@ public class MainTarefa2 {
 			File filesPair = new File(args[0]);
 			File novasQuestoes = new File(args[1]);
 			TextFileProcessor.readNewQuestionsFile(filesPair, novasQuestoes, false);
+			
+			
 	}
 
 }

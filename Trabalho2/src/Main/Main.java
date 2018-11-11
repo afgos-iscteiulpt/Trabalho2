@@ -4,7 +4,6 @@ import java.io.File;
 
 import fileReader.DataProcessor;
 import fileReader.TextFileModifier;
-import FileReader2.ReadFileQuestoes;
 
 public class Main {
 
@@ -12,13 +11,6 @@ public class Main {
 		new File("unigrams").mkdirs();
 		new File("bigrams").mkdirs();
 		DataProcessor processor = new DataProcessor();
-		ReadFileQuestoes subprocessor = new ReadFileQuestoes();
-		
-		//Substituir palavras nos ficheiros das questoes
-		//subprocessor.ReadQuestion(new File("corpora/QuestoesConhecidas.txt"),new File("corpora/QuestoesConhecidasTags.txt"));
-		//subprocessor.ReadQuestion(new File("corpora/NovasQuestoes.txt"), new File("corpora/NovasQuestoesTags.txt"));
-		//subprocessor.ReadQuestion(new File("corpora/NovasQuestoesMaisRecentes.txt"), new File("corpora/NovasQuestoesMaisRecentesTags.txt"));
-		
 	
 		//Unigrams
 		TextFileModifier.readFile(new File("corpora/QuestoesConhecidas.txt"), processor);

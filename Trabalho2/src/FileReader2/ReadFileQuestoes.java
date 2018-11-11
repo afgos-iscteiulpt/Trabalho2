@@ -6,24 +6,18 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
-import fileReader.DataProcessor;
 
 public class ReadFileQuestoes {
 
 	private Map<File, String> map = new HashMap<File, String>();
-	private File questionfile;
 	private File targetfile;
 
 	public ReadFileQuestoes() {
@@ -37,7 +31,6 @@ public class ReadFileQuestoes {
 	}
 
 	public void ReadQuestion(File qfile, File tfile) {
-		questionfile = qfile;
 		targetfile = tfile;
 		targetfile.delete();
 		try (BufferedReader br = new BufferedReader(new FileReader(qfile))) {
@@ -94,9 +87,8 @@ public class ReadFileQuestoes {
 	}
 
 	public void CheckForSubstrings(Map<String, String> matches) {
-		Map<String, String> map2 = matches;
 		try {
-			Iterator it = matches.keySet().iterator();
+			Iterator<String> it = matches.keySet().iterator();
 			while (it.hasNext()) {
 				String g1 = (String) it.next();
 				for (String g2 : matches.keySet()) {
