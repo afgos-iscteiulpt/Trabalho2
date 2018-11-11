@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import fileReader.DataProcessor;
 import resources.Tags;
 
 public class LanguageModelProcessor {
@@ -71,7 +72,8 @@ public class LanguageModelProcessor {
 		for (Tags t : Tags.values()) {
 			probability = 1;
 			String lastWord = "<s>";
-			for (String word : stringArray) {
+			for (String w : stringArray) {
+				String word = DataProcessor.checkForApostrophe(w);
 				probability = probability * conditionalProbabilities(t.toString(), word, lastWord, smoothing);
 				lastWord = word;
 			}

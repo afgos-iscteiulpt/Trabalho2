@@ -13,6 +13,7 @@ character_name 	Tell me the role played by _PEOPLE_ in _MOVIE_.
 character_name 	What was the role taken by _PEOPLE_ in the movie _MOVIE_?
 character_name 	In total, how many characters are there in _MOVIE_? 
 genre 	What are the genres of the movie _MOVIE_?
+genre 	What are the genres of the movie _MOVIE_?
 genre 	What kind of movie is _MOVIE_? 
 genre 	To which genres does the movie _MOVIE_ belong? 
 genre 	Tell me the genres of _MOVIE_.

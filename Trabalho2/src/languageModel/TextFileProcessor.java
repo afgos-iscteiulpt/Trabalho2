@@ -15,11 +15,15 @@ public class TextFileProcessor {
 		try (BufferedReader br = new BufferedReader(new FileReader(novasQuestoes))) {
 			String line;
 			while ((line = br.readLine()) != null) {
-				processor.processNewQuestion(line.substring(0, line.trim().length()-1), smoothing);
+				processor.processNewQuestion(treatString(line), smoothing);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		processor.checkTags();
+	}
+	
+	public static String treatString(String s) {
+		return s.trim().replaceAll("[.?!]", "");
 	}
 }

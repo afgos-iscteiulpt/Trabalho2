@@ -192,7 +192,7 @@ public class DataProcessor {
 		lastRead = word;
 	}
 	
-	private String checkForApostrophe(String word) {
+	public static String checkForApostrophe(String word) {
 		if(word.contains("'"))
 			return word.substring(0, word.indexOf("'"));
 		return word;

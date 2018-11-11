@@ -2,6 +2,7 @@ package Main;
 
 import java.io.File;
 
+import FileReader2.ReadFileQuestoes;
 import fileReader.DataProcessor;
 import fileReader.TextFileModifier;
 import languageModel.TextFileProcessor;
@@ -9,10 +10,20 @@ import languageModel.TextFileProcessor;
 public class MainTarefa3Smoothing {
 
 	public static void main(String[] args) {
+		
+		File filesPair = new File(args[0]);
+		File novasQuestoes = new File(args[1]);
 			
 			new File("unigrams").mkdirs();
 			new File("bigrams").mkdirs();
 			DataProcessor processor = new DataProcessor();
+			
+			ReadFileQuestoes subprocessor = new ReadFileQuestoes();
+			
+			//Substituir palavras nos ficheiros das questoes
+			System.out.println("Tagging questions...");
+			subprocessor.ReadQuestion(new File("corpora/QuestoesConhecidas.txt"),new File("corpora/QuestoesConhecidasTags.txt"));
+			subprocessor.ReadQuestion(novasQuestoes, new File("corpora/NovasQuestoesTags.txt"));
 			
 			//Unigrams
 					TextFileModifier.readFile(new File("corpora/QuestoesConhecidasTags.txt"), processor);
@@ -87,9 +98,7 @@ public class MainTarefa3Smoothing {
 					TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_runtime_smooth.txt", processor.getRuntime_bigram());
 					TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_vote_avg_smooth.txt", processor.getVote_avg_bigram());
 					
-					File filesPair = new File(args[0]);
-					File novasQuestoes = new File(args[1]);
-					TextFileProcessor.readNewQuestionsFile(filesPair, novasQuestoes, true);
+					TextFileProcessor.readNewQuestionsFile(filesPair, new File("corpora/NovasQuestoesTags.txt"), true);
 	}
 					
 }

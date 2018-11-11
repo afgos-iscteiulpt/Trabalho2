@@ -6,14 +6,14 @@ actor_name 	In total, how many characters are there in Charlie's Angels: Full Th
 budget 	What was the budget of Johnny English?
 budget 	How much budget did Monsters, Inc. have?
 budget 	What was The Incredibles's budget?
-budget 	Money spent on Some like it Hot?
+budget 	Money spent on Some like It Hot?
 budget 	Rush Hour 2 had how much budget? 
 character_name 	What was the character that Tom Cruise played in Top Gun?
 character_name 	What role did Anthony Hopkins play in Training Day?
 character_name 	Tell me the role played by T. J. Storm in G.I. Joe: Retaliation.
 character_name 	What was the role taken by Karl J. Martin in the movie The Twilight Saga: Breaking Dawn - Part 2?
 character_name 	In total, how many characters are there in Charlie's Angels: Full Throttle? 
-genre 	What are the genres of the movie InterStellar?
+genre 	What are the genres of the movie Interstellar?
 genre 	What are the genres of the movie Warcraft?
 genre 	What kind of movie is Finding Nemo? 
 genre 	To which genres does the movie Toy Story belong? 

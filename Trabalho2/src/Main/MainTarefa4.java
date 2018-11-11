@@ -18,6 +18,14 @@ public class MainTarefa4 {
 		new File("bigrams").mkdirs();
 		DataProcessor processor = new DataProcessor();
 		
+		ReadFileQuestoes subprocessor = new ReadFileQuestoes();
+		
+		//Substituir palavras nos ficheiros das questoes
+		System.out.println("Tagging questions...");
+		subprocessor.ReadQuestion(new File("corpora/QuestoesConhecidas.txt"),new File("corpora/QuestoesConhecidasTags.txt"));
+		subprocessor.ReadQuestion(new File("corpora/NovasQuestoesMaisRecentes.txt"),new File("corpora/NovasQuestoesMaisRecentesTags.txt"));
+		subprocessor.ReadQuestion(novasQuestoes, new File("corpora/NovasQuestoesTags.txt"));
+		
 		
 		//Unigrams
 				TextFileModifier.readFile(new File("corpora/QuestoesConhecidasTags.txt"), processor);
@@ -93,7 +101,7 @@ public class MainTarefa4 {
 				TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_runtime_smooth.txt", processor.getRuntime_bigram());
 				TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_vote_avg_smooth.txt", processor.getVote_avg_bigram());
 				
-				TextFileProcessor.readNewQuestionsFile(filesPair, novasQuestoes, false);
+				TextFileProcessor.readNewQuestionsFile(filesPair, new File("corpora/NovasQuestoesTags.txt"), false);
 			
 			}
 }

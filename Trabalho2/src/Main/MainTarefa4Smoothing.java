@@ -7,10 +7,9 @@ import fileReader.DataProcessor;
 import fileReader.TextFileModifier;
 import languageModel.TextFileProcessor;
 
-public class MainTarefa3 {
+public class MainTarefa4Smoothing {
 
 	public static void main(String[] args) {
-		
 		File filesPair = new File(args[0]);
 		File novasQuestoes = new File(args[1]);
 		
@@ -23,10 +22,13 @@ public class MainTarefa3 {
 		//Substituir palavras nos ficheiros das questoes
 		System.out.println("Tagging questions...");
 		subprocessor.ReadQuestion(new File("corpora/QuestoesConhecidas.txt"),new File("corpora/QuestoesConhecidasTags.txt"));
+		subprocessor.ReadQuestion(new File("corpora/NovasQuestoesMaisRecentes.txt"),new File("corpora/NovasQuestoesMaisRecentesTags.txt"));
 		subprocessor.ReadQuestion(novasQuestoes, new File("corpora/NovasQuestoesTags.txt"));
+		
 		
 		//Unigrams
 				TextFileModifier.readFile(new File("corpora/QuestoesConhecidasTags.txt"), processor);
+				TextFileModifier.readFile(new File("corpora/NovasQuestoesMaisRecentesTags.txt"), processor);
 				TextFileModifier.writeUnigramFile("unigrams/unigrams_actor_name.txt", processor.getActor_name_unigram());
 				TextFileModifier.writeUnigramFile("unigrams/unigrams_budget.txt", processor.getBudget_unigram());
 				TextFileModifier.writeUnigramFile("unigrams/unigrams_character_name.txt", processor.getCharacter_name_unigram());
@@ -98,9 +100,7 @@ public class MainTarefa3 {
 				TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_runtime_smooth.txt", processor.getRuntime_bigram());
 				TextFileModifier.writeBigramSmoothFile("bigrams/bigrams_vote_avg_smooth.txt", processor.getVote_avg_bigram());
 				
-				TextFileProcessor.readNewQuestionsFile(filesPair, new File("corpora/NovasQuestoesTags.txt"), false);
+				TextFileProcessor.readNewQuestionsFile(filesPair, new File("corpora/NovasQuestoesTags.txt"), true);
 			
 			}
-
-
 }

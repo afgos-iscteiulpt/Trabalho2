@@ -15,13 +15,15 @@ import java.util.Set;
 import com.google.common.collect.Multiset;
 import com.google.common.collect.Table;
 
+import languageModel.TextFileProcessor;
+
 public class TextFileModifier {
 
 	public static void readFile(File file, DataProcessor processor) {
 		try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 			String line;
 			while ((line = br.readLine()) != null) {
-				processor.processQuestion(line.substring(0, line.trim().length()-1));
+				processor.processQuestion(TextFileProcessor.treatString(line));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
